@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-public class XRF_InteractionController : MonoBehaviour
+public class XRF_UPenn_InteractionController : MonoBehaviour
 {
 
     public Material HighlightMaterial;
@@ -10,9 +10,9 @@ public class XRF_InteractionController : MonoBehaviour
     [System.Serializable]
     public enum InteractionType // your custom enumeration
     {
+        OnOffController,
         AnimationController,
         SceneChangeController,
-        OnOffController,
         GrabAndReturn,
         GrabAndStay,
         TeleportController,
@@ -23,7 +23,7 @@ public class XRF_InteractionController : MonoBehaviour
         MakeObjectChild
     };
 
-    public InteractionType myType = InteractionType.AnimationController;  // this public var should appear as a drop down
+    public InteractionType myType = InteractionType.OnOffController;  // this public var should appear as a drop down
 
     //animation stuff
     public GameObject ObjectWithAnimation;

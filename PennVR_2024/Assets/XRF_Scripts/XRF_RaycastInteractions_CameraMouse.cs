@@ -98,7 +98,7 @@ public class XRF_RaycastInteractions_CameraMouse : MonoBehaviour
                     }
                 }
             }
-            else if (!hitObject.GetComponent<Collider>().isTrigger && hitObject.GetComponent<XRF_InteractionController>())
+            else if (!hitObject.GetComponent<Collider>().isTrigger && hitObject.GetComponent<XRF_UPenn_InteractionController>())
             {
 
                 //i shot out a ray and hit something with an interaction controller
@@ -106,7 +106,7 @@ public class XRF_RaycastInteractions_CameraMouse : MonoBehaviour
                 endPoint = myRayHit.point;
 
 
-                if (hitObject.GetComponent<XRF_InteractionController>().isTeleporter)
+                if (hitObject.GetComponent<XRF_UPenn_InteractionController>().isTeleporter)
                 {
                     //Debug.Log("this is a teleporter");
                     RayMissed();
@@ -118,7 +118,7 @@ public class XRF_RaycastInteractions_CameraMouse : MonoBehaviour
                     feetIcon.transform.eulerAngles = new Vector3(feetIcon.transform.eulerAngles.x, raycastCamera.transform.eulerAngles.y, feetIcon.transform.eulerAngles.z);
                     grabable = false;
                 }
-                else if (hitObject.GetComponent<XRF_InteractionController>().isGrabbable)
+                else if (hitObject.GetComponent<XRF_UPenn_InteractionController>().isGrabbable)
                 {
                     tempDistance = Vector3.Distance(origin, myRayHit.point);
                     RayHit(hitObject);
@@ -163,8 +163,8 @@ public class XRF_RaycastInteractions_CameraMouse : MonoBehaviour
         {
             Debug.Log("clickable");
 
-            XRF_InteractionController[] myInteractions = hitObject.GetComponents<XRF_InteractionController>();
-            foreach (XRF_InteractionController t in myInteractions)
+            XRF_UPenn_InteractionController[] myInteractions = hitObject.GetComponents<XRF_UPenn_InteractionController>();
+            foreach (XRF_UPenn_InteractionController t in myInteractions)
             {
                 t.DoTheThing();
             }
@@ -189,9 +189,9 @@ public class XRF_RaycastInteractions_CameraMouse : MonoBehaviour
     {
         if (iGrabbedYou)
         {
-            if (grabbedObject.GetComponent<XRF_InteractionController>().originalPos != Vector3.zero)
+            if (grabbedObject.GetComponent<XRF_UPenn_InteractionController>().originalPos != Vector3.zero)
             {
-                grabbedObject.transform.position = grabbedObject.GetComponent<XRF_InteractionController>().originalPos;
+                grabbedObject.transform.position = grabbedObject.GetComponent<XRF_UPenn_InteractionController>().originalPos;
             }
 
             iGrabbedYou = false;
@@ -233,7 +233,7 @@ public class XRF_RaycastInteractions_CameraMouse : MonoBehaviour
                 tempMaterialsHigh = highlightThis.transform.gameObject.GetComponent<MeshRenderer>().sharedMaterials;
                 matsHigh = new Material[tempMaterialsHigh.Length];
 
-                Material highlightMaterial = highlightThis.GetComponent<XRF_InteractionController>().HighlightMaterial;
+                Material highlightMaterial = highlightThis.GetComponent<XRF_UPenn_InteractionController>().HighlightMaterial;
 
                 for (int i = 0; i < tempMaterialsHigh.Length; i++)
                 {

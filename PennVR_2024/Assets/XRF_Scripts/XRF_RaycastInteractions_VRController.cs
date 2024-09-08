@@ -81,7 +81,7 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
                 hitObject = myRayHit.transform.gameObject;
                 endPointRotation = myRayHit.normal;
 
-                if (!hitObject.GetComponent<Collider>().isTrigger && hitObject.GetComponent<XRF_InteractionController>())
+                if (!hitObject.GetComponent<Collider>().isTrigger && hitObject.GetComponent<XRF_UPenn_InteractionController>())
                 {
 
                     //i shot out a ray and hit something with an interaction controller
@@ -89,7 +89,7 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
                     endPoint = myRayHit.point;
 
 
-                    if (hitObject.GetComponent<XRF_InteractionController>().isTeleporter)
+                    if (hitObject.GetComponent<XRF_UPenn_InteractionController>().isTeleporter)
                     {
                         RayMissed();
                         Teleportable = true;
@@ -99,7 +99,7 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
                         feetIcon.SetActive(true);
                         grabable = false;
                     }
-                    else if (hitObject.GetComponent<XRF_InteractionController>().isGrabbable)
+                    else if (hitObject.GetComponent<XRF_UPenn_InteractionController>().isGrabbable)
                     {
                         tempDistance = Vector3.Distance(origin, myRayHit.point);
                         RayHit(hitObject);
@@ -121,7 +121,7 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
                             grabable = true;
                         }
                     }
-                    else if(hitObject.GetComponent<XRF_InteractionController>().handGrab)
+                    else if(hitObject.GetComponent<XRF_UPenn_InteractionController>().handGrab)
                     {
                         tempDistance = Vector3.Distance(origin, myRayHit.point);
                         RayHit(hitObject);
@@ -181,8 +181,8 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
 
     public void ClickTheButton(GameObject hitObject)
     {
-        XRF_InteractionController[] myInteractions = hitObject.GetComponents<XRF_InteractionController>();
-        foreach (XRF_InteractionController t in myInteractions)
+        XRF_UPenn_InteractionController[] myInteractions = hitObject.GetComponents<XRF_UPenn_InteractionController>();
+        foreach (XRF_UPenn_InteractionController t in myInteractions)
         {
             t.DoTheThing();
         }
@@ -216,12 +216,12 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
         MeshRenderer rend = highlightThis.transform.gameObject.GetComponent<MeshRenderer>();
         if (rend != null)
         {
-            if (!dontHighlight && highlightThis.GetComponent<XRF_InteractionController>().isSelected == false)
+            if (!dontHighlight && highlightThis.GetComponent<XRF_UPenn_InteractionController>().isSelected == false)
             {
                 tempMaterialsHigh = highlightThis.transform.gameObject.GetComponent<MeshRenderer>().sharedMaterials;
                 matsHigh = new Material[tempMaterialsHigh.Length];
 
-                Material highlightMaterial = highlightThis.GetComponent<XRF_InteractionController>().HighlightMaterial;
+                Material highlightMaterial = highlightThis.GetComponent<XRF_UPenn_InteractionController>().HighlightMaterial;
 
                 for (int i = 0; i < tempMaterialsHigh.Length; i++)
                 {
@@ -229,18 +229,18 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
                 }
                 highlightThis.transform.gameObject.GetComponent<MeshRenderer>().sharedMaterials = matsHigh;
                 dontHighlight = true;
-                highlightThis.GetComponent<XRF_InteractionController>().isSelected = true;
+                highlightThis.GetComponent<XRF_UPenn_InteractionController>().isSelected = true;
             }
         }
     }
     void UnHighlightObj(GameObject unHighlightThis)
     {
         MeshRenderer rend = unHighlightThis.GetComponent<MeshRenderer>();
-        if (rend != null && unHighlightThis.GetComponent<XRF_InteractionController>().isSelected == true)
+        if (rend != null && unHighlightThis.GetComponent<XRF_UPenn_InteractionController>().isSelected == true)
         {
             unHighlightThis.transform.gameObject.GetComponent<MeshRenderer>().sharedMaterials = tempMaterialsHigh;
             dontHighlight = false;
-            unHighlightThis.GetComponent<XRF_InteractionController>().isSelected = false;
+            unHighlightThis.GetComponent<XRF_UPenn_InteractionController>().isSelected = false;
         }
     }
 
@@ -414,14 +414,14 @@ public class XRF_RaycastInteractions_VRController : MonoBehaviour
 
         if (iGrabbedYou)
         {
-            if (grabbedObject.GetComponent<XRF_InteractionController>().originalPos != Vector3.zero)
+            if (grabbedObject.GetComponent<XRF_UPenn_InteractionController>().originalPos != Vector3.zero)
             {
-                grabbedObject.transform.position = grabbedObject.GetComponent<XRF_InteractionController>().originalPos;
+                grabbedObject.transform.position = grabbedObject.GetComponent<XRF_UPenn_InteractionController>().originalPos;
             }
             if(handGrab)
             {
                 grabbedObject.transform.SetParent(handGrabParent.transform);
-                grabbedObject.transform.position = grabbedObject.GetComponent<XRF_InteractionController>().originalPos;
+                grabbedObject.transform.position = grabbedObject.GetComponent<XRF_UPenn_InteractionController>().originalPos;
             }
             handGrab = false;
             iGrabbedYou = false;

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/XRF_Scenes/In Class Interactions.unity
+    path: Assets/XRF_Scenes/Archive/In Class Interactions.unity
     guid: 7e3b6e064451147469032430dffda2bc
   - enabled: 1
     path: Assets/XRF_Scenes/ExampleScene_Interaction_01.unity
@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/XRF_Scenes/ExampleScene_Terrain.unity
     guid: 13c04b2eb4756a74cada50e526009451
   - enabled: 0
-    path: Assets/XRF_Scenes/ExampleScene_EmptyScene.unity
+    path: Assets/XRF_Scenes/Archive/ExampleScene_EmptyScene.unity
     guid: f5ea3d8eb91edda45957107b67bb3333
   - enabled: 0
     path: Assets/XRF_Scenes/Archive/Temp in class.unity
