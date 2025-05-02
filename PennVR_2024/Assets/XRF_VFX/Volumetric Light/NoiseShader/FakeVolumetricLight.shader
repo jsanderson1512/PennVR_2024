@@ -7,6 +7,8 @@
 		_Intensity("Intensity", Range(0., 1.5)) = .2
 		_Fade("Fade", Range(0., 10.)) = 1.
 		_Wind("Wind", Range(0., 1.)) = .1
+		_Color ("Main Color", COLOR) = (1,1,1,1)			//jeff added
+
 	}
 
 		SubShader{
@@ -41,6 +43,10 @@
 				float3 normal : NORMAL;
 			};
 
+			//jeff added
+			// _Color("Color", Color) = (1,1,1,1)
+			
+
 			float _Fresnel;
 			float _AlphaOffset;
 			float _NoiseSpeed;
@@ -48,6 +54,8 @@
 			float _Intensity;
 			float _Fade;
 			float _Wind;
+			fixed4 _Color;
+
 
 			v2f vert(appdata_t v) {
 				v2f o;
@@ -77,7 +85,14 @@
 				float n_d = pow(cnoise(float3(n_uv * 30., 1.) + _Time.y * _NoiseSpeed * -2.), 2.) * .9;
 				float noise = n_a + n_b + n_c + n_d;
 				noise = (noise < 0.) ? 0. : noise;
+				
+				//jeff switched to below
+				//float4 col = float4(noise, noise, noise, 1.);
+
+				//jeff added a color to this...
+
 				float4 col = float4(noise, noise, noise, 1.);
+
 
 				// get vertices directions toward world camera
 				// *note that UnityWorldSpaceViewDir return vertices' direction (not cam's direction)
@@ -96,7 +111,14 @@
 				// fade out
 				float fade = saturate(pow(1. - i.uv.y, _Fade));
 
+				
+
 				col.a *= fresnel * _AlphaOffset * fade;
+
+
+				float4 removeA = float4(_Color.r,_Color.g,_Color.b,0);
+				col += removeA;
+
 
 				return col;
 			}
